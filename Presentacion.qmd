@@ -1,7 +1,7 @@
 ---
 title: "UnalR"
-subtitle: "Paquete de R orientado a la visualización de estadísticas institucionales"
-author: "<br>[Jeisson Mauricio Alarcon](https://github.com/JeisonAlarcon)<br>[Alberto Rodríguez R](https://albertor.netlify.app/)<br><br>[Dirección Nacional de Planeación y Estadística](https://planeacion.unal.edu.co/home/)<br>[Universidad Nacional de Colombia](https://unal.edu.co/)<br><br> Noviembre de 2024"
+subtitle: "Paquete de R orientado a la visualización de estadísticas e indicadores institucionales"
+author: "<br>[Jeisson Mauricio Alarcon](https://github.com/JeisonAlarcon)<br>[Alberto Rodríguez R](https://albertor.netlify.app/)<br><br>[Dirección Nacional de Planeación y Estadística](https://planeacion.unal.edu.co/home/)<br>[Universidad Nacional de Colombia](https://unal.edu.co/)<br><br> [Conferencia Latinoamericana sobre Uso de R en Investigación + Desarrollo - 2024](https://latinr.org/)"
 format:
   onyxia-revealjs:
     code-fold: true
@@ -14,10 +14,60 @@ editor: visual
 ---
 
 ```{r}
-library(UnalData)
+library(UnalR)
+library(tidyverse)
 ```
 
-## Objetivo de UnalR
+
+## ASPECTOS FUNCIONALES {.center}
+
+## ¿Cuál es el objetivo del paquete UnalR?
+
+::: columns
+::: {.column width="35%"}
+
+<br><br>
+[![](Imagenes/UnalR.png)](https://estadisticaun.github.io/UnalR/index.html)
+
+:::
+
+::: {.column width="65%"}
+
+El objetivo principal del paquete de R [UnalR](https://estadisticaun.github.io/UnalR/index.html) es el de contar, dentro del entorno de R, con una librería que facilita la disposición de microdatos y la visualización ***interactiva y estática*** de estadísticas e indicadores oficiales en la [Universidad Nacional de Colombia](https://unal.edu.co/) en particular, así como en otras entidades públicas del órden nacional e internacional.
+
+:::
+:::
+
+## ¿De dónde surge la necesidad de crear el paquete UnalR?
+
+La idea/necesidad de crear el paquete [UnalR](https://estadisticaun.github.io/UnalR/index.html) surge, entre otras, de las siguientes necesidades.
+
+1. Una herramienta de "bajo" costo para la gestión y publicación de estadísticas oficiales.
+2. Un paquete que permita, desde una única función, la construcción de múltiples gráficos contenidos en el entorno [htmlwidgets](https://www.htmlwidgets.org/) de **R**.
+3. Un paquete de **R** que permita, de manera rápida -poco código- y a través de funciones únicas, la construcción de tablas y gráficos estáticos u orientados a la web (interactivos).
+
+## ¿En dónde se está usando actualmente el paquete UnalR?
+
+<br>
+
+::: columns
+::: {.column width="70%"}
+[![](Imagenes/PaginaEsts.jpg){height="400"}](https://estadisticas.unal.edu.co/home/)
+:::
+
+::: {.column width="30%"}
+<h7 style="color:red;"> Instrumentos </h7>
+
+1. Dashboards.
+  + [Estudiantes matriculados](https://estadisticas.unal.edu.co/Matriculados/)
+  
+2. Boletines estadísticos.
+  + [Boletín Sede Amazonía](https://estadisticaun.github.io/BoletinAmazonia/)
+
+:::
+:::
+
+## ASPECTOS TÉCNICOS {.center}
 
 ## Información de Contacto {.smaller .center}
 
