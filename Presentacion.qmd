@@ -43,7 +43,7 @@ El objetivo principal del paquete de R [UnalR](https://estadisticaun.github.io/U
 La idea/necesidad de crear el paquete [UnalR](https://estadisticaun.github.io/UnalR/index.html) surge, entre otras, de las siguientes necesidades.
 
 1. Una herramienta de "bajo" costo para la gestión y publicación de estadísticas oficiales.
-2. Un paquete que permita, desde una única función, la construcción de múltiples gráficos contenidos en el entorno [htmlwidgets](https://www.htmlwidgets.org/) de **R**.
+2. Un paquete que permita, desde una única función, la construcción de múltiples gráficos contenidos en el entorno [htmlwidgets](https://www.htmlwidgets.org/) de **R**, así como en [ggplot2](https://ggplot2.tidyverse.org/).
 3. Un paquete de **R** que permita, de manera rápida -poco código- y a través de funciones únicas, la construcción de tablas y gráficos estáticos u orientados a la web (interactivos).
 
 ## ¿En dónde se está usando actualmente el paquete UnalR?
