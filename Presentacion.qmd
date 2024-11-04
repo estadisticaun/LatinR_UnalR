@@ -1,76 +1,267 @@
 ---
-title: "UnalR"
-subtitle: "Paquete de R orientado a la visualización de estadísticas e indicadores institucionales"
-author: "<br>[Jeisson Mauricio Alarcon](https://github.com/JeisonAlarcon)<br>[Alberto Rodríguez R](https://albertor.netlify.app/)<br><br>[Dirección Nacional de Planeación y Estadística](https://planeacion.unal.edu.co/home/)<br>[Universidad Nacional de Colombia](https://unal.edu.co/)<br><br> [Conferencia Latinoamericana sobre Uso de R en Investigación + Desarrollo - 2024](https://latinr.org/)"
+title:     "[UnalR]{.unalr_3}"
+subtitle:  "**[Paquete de R Orientado a La Visualización de Estadísticas e Indicadores Institucionales]{.unalr_2}**"
+author:    "
+  [Jeison Mauricio Alarcón](https://github.com/JeisonAlarcon)<br>
+  [Alberto Rodríguez R](https://albertor.netlify.app/)<br><br>
+  [Dirección Nacional de Planeación y Estadística](https://planeacion.unal.edu.co/home/)<br>
+  [Universidad Nacional de Colombia](https://unal.edu.co/)
+           "
+institute: "[Conferencia Latinoamericana sobre Uso de R en Investigación + Desarrollo - 2024](https://latinr.org/)"
+footer:    "[UnalR](https://cran.r-project.org/package=UnalR)"
+from: markdown+emoji
 format:
   onyxia-revealjs:
+    include-in-header:
+      text: |
+        <style>
+        .centered {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+        h2 {
+          text-align: center;
+        }
+        p {
+          text-align: justify;
+        }
+        #title-slide .subtitle, div.reveal div.slides section.quarto-title-block .subtitle {
+          text-align: center;
+        }
+        .reveal .footer > p {
+          text-align: center;
+        }
+        .panel-tabset [role=tablist] {
+          text-align: center;
+        }
+        .reveal blockquote {
+          text-align: justify;
+        }
+        </style>
     code-fold: true
     output-file: index.html
     chalkboard: true
     slide-number: true
     preview-links: auto
     logo: "Imagenes/UnalR.png"
+    fig-width: 9.5
+    fig-height: 4.5
 editor: visual
+execute:
+  echo: true
+  warning: false
 ---
 
 ```{r}
+#| include: false
 library(UnalR)
-library(tidyverse)
+library("tibble"); library("dplyr")
+set.seed(42)
+Blood <- tibble(
+  Year    = rep(2000:2001, each = 100),
+  Quarter = sample(c("I", "II", "III", "IV"), size = 200, replace = TRUE),
+  Week    = sample(c("1rt", "2nd", "3rd"), size = 200, replace = TRUE),
+  Group   = sample(
+    c("O", "A", "B", "AB"), size = 200, prob = c(.5, .3, .16, .4), replace = TRUE
+  ),
+  RH      = sample(c("+", "-"), size = 200, replace = TRUE),
+  Prevalence = round(runif(200)*100)
+)
 ```
 
-
-## ASPECTOS FUNCIONALES {.center}
+# :bar_chart: ASPECTOS FUNCIONALES :hammer_and_wrench: {.center}
 
 ## ¿Cuál es el objetivo del paquete UnalR?
 
-::: columns
+::::: columns
 ::: {.column width="35%"}
-
-<br><br>
-[![](Imagenes/UnalR.png)](https://estadisticaun.github.io/UnalR/index.html)
-
+<br><br> [![](Imagenes/UnalR.png)](https://estadisticaun.github.io/UnalR/index.html)
 :::
 
 ::: {.column width="65%"}
-
 El objetivo principal del paquete de R [UnalR](https://estadisticaun.github.io/UnalR/index.html) es el de contar, dentro del entorno de R, con una librería que facilita la disposición de microdatos y la visualización ***interactiva y estática*** de estadísticas e indicadores oficiales en la [Universidad Nacional de Colombia](https://unal.edu.co/) en particular, así como en otras entidades públicas del órden nacional e internacional.
-
 :::
-:::
+:::::
 
 ## ¿De dónde surge la necesidad de crear el paquete UnalR?
 
 La idea/necesidad de crear el paquete [UnalR](https://estadisticaun.github.io/UnalR/index.html) surge, entre otras, de las siguientes necesidades.
 
-1. Una herramienta de "bajo" costo para la gestión y publicación de estadísticas oficiales.
-2. Un paquete que permita, desde una única función, la construcción de múltiples gráficos contenidos en el entorno [htmlwidgets](https://www.htmlwidgets.org/) de **R**, así como en [ggplot2](https://ggplot2.tidyverse.org/).
-3. Un paquete de **R** que permita, de manera rápida -poco código- y a través de funciones únicas, la construcción de tablas y gráficos estáticos u orientados a la web (interactivos).
+1.  Una herramienta de "bajo" costo para la gestión y publicación de estadísticas oficiales.
+2.  Un paquete que permita, desde una única función, la construcción de múltiples gráficos contenidos en el entorno [htmlwidgets](https://www.htmlwidgets.org/) de **R**, así como en [ggplot2](https://ggplot2.tidyverse.org/).
+3.  Un paquete de **R** que permita, de manera rápida -poco código- y a través de funciones únicas, la construcción de tablas y gráficos estáticos u orientados a la web (interactivos).
 
 ## ¿En dónde se está usando actualmente el paquete UnalR?
 
-::: columns
+::::: columns
 ::: {.column width="70%"}
-<br>
-[![](Imagenes/PaginaEsts.jpg){height="400"}](https://estadisticas.unal.edu.co/home/)
-[https://estadisticas.unal.edu.co/home/](https://estadisticas.unal.edu.co/home/)
+<br> [![](Imagenes/PaginaEsts.jpg){height="400"}](https://estadisticas.unal.edu.co/home/) <https://estadisticas.unal.edu.co/home/>
 :::
 
 ::: {.column width="30%"}
 <h7 style="color:red;"> Instrumentos </h7>
 
-1. Dashboards.
-  + [Matriculados](https://estadisticas.unal.edu.co/Matriculados/)
-  + [Saber Pro](https://estadisticas.unal.edu.co/SaberPro/)
-  
-2. Boletines estadísticos.
-  + [Boletín Sede Amazonía](https://estadisticaun.github.io/BoletinAmazonia/)
+1.  Dashboards.
 
+-   [Matriculados](https://estadisticas.unal.edu.co/Matriculados/)
+-   [Saber Pro](https://estadisticas.unal.edu.co/SaberPro/)
+
+2.  Boletines estadísticos.
+
+-   [Boletín Sede Amazonía](https://estadisticaun.github.io/BoletinAmazonia/)
 :::
+:::::
+
+# :gear: ASPECTOS TÉCNICOS :desktop_computer:
+
+------------------------------------------------------------------------
+
+## :package: **Instalación de la Librería** {.smaller .scrollable transition="concave"}
+
+A continuación se presenta el código necesario para instalar la librería, seguido del enlace a la [documentación oficial](https://estadisticaun.github.io/UnalR/){preview-link="true" style="text-align: center"} donde se detallan todas las funciones y características disponibles. Este recurso es ideal para obtener información completa sobre su uso y personalización.
+
+```{r}
+#| eval: false
+#| echo: true
+#| code-line-numbers: "2"
+# Versión oficial (estable)
+install.packages("UnalR")
+```
+
+## :clipboard: Ejemplo de Implementación {.smaller .scrollable .scrollable transition="zoom"}
+
+::::::: panel-tabset
+### Highcharter
+
+::: centered
+```{r}
+#| code-line-numbers: "8"
+Plot.Series(
+  datos       = Blood
+  , tiempo    = vars(Year, Quarter, Week)
+  , valores   = Prevalence
+  , categoria = Group
+  , labelX    = ""
+  , colores   = c("#58D454", "#30BAC5", "#FF8029", "#DF0000")
+  , libreria  = "highcharter"
+)
+```
 :::
 
-## ASPECTOS TÉCNICOS {.center}
+::: centered
+```{r}
+#| code-line-numbers: "3|6"
+Plot.Series(
+  datos          = Blood
+  , tiempo       = vars(Year, Quarter)
+  , valores      = Prevalence
+  , categoria    = Group
+  , freqRelativa = TRUE
+  , labelX       = ""
+  , colores      = c("#58D454", "#30BAC5", "#FF8029", "#DF0000")
+  , libreria     = "highcharter"
+)
+```
+:::
 
-## Información de Contacto {.smaller .center}
+### Plotly
+
+::: centered
+```{r}
+#| fig-width: 9.5
+#| fig-height: 4
+#| code-line-numbers: "8"
+Plot.Series(
+  datos       = Blood
+  , tiempo    = vars(Year, Quarter, Week)
+  , valores   = Prevalence
+  , categoria = Group
+  , labelX    = ""
+  , colores   = c("#58D454", "#30BAC5", "#FF8029", "#DF0000")
+  , libreria  = "plotly"
+)
+```
+:::
+
+### ggplot
+
+::: centered
+```{r}
+#| fig-align: center
+#| code-line-numbers: "8"
+Plot.Series(
+  datos       = Blood
+  , tiempo    = vars(Year, Quarter, Week)
+  , valores   = Prevalence
+  , categoria = Group
+  , labelX    = ""
+  , colores   = c("#58D454", "#30BAC5", "#FF8029", "#DF0000")
+  , estatico = TRUE
+)
+```
+:::
+:::::::
+
+## :jigsaw: *Desafíos* :warning: {.smaller .scrollable transition="convex"}
+
+:::::::::::: panel-tabset
+### :one:
+
+::::: columns
+::: {.column width="50%"}
+#### :arrows_counterclockwise: *Estructura de Sintaxis Diferente*
+
+-   `ggplot2` usa una sintaxis basada en capas, donde se agregan componentes (`+`).
+-   `Highcharter` sigue una estructura de configuración basada en JSON similar a JavaScript.
+-   `Plotly` mezcla un enfoque declarativo y orientado a objetos, distinto a los anteriores.
+:::
+
+::: {.column width="50%"}
+#### :electric_plug: *Incompatibilidad de Funcionalidades*
+
+<br> Las funcionalidades, como la personalización de temas, etiquetas o tipos de gráficos, tienen nombres de argumentos distintos, pueden faltar en algunas librerías o comportarse de manera diferente. Por ejemplo, `ggplot2` usa `aes()` para mapeos estéticos, mientras que `Plotly` y `Highcharter` configuran ejes y valores de forma directa.
+:::
+:::::
+
+<!-- ======================================================================= -->
+
+### :two:
+
+::::: columns
+::: {.column width="50%"}
+#### :art: *Personalización, Configuraciones y Soporte*
+
+<br> Los temas y estilos gráficos pueden no tener equivalencias directas entre librerías, y algunos tipos de gráficos pueden no ser compatibles en todas ellas.
+:::
+
+::: {.column width="50%"}
+#### :card_file_box: *Formatos y Estructuras de Datos Diferentes*
+
+<br> Se implementaron funciones internas de preprocesamiento que convierten los datos al formato adecuado según la librería seleccionada.
+:::
+:::::
+
+<!-- ======================================================================= -->
+
+### :three:
+
+::::: columns
+::: {.column width="50%"}
+#### :bug: *Control de Errores y Msj de Advertencia*
+
+<br> Es necesario establecer controles de error específicos y mensajes informativos para manejar casos donde un gráfico o parámetro no sea compatible con alguna librería, proporcionando retroalimentación al usuario.
+:::
+
+::: {.column width="50%"}
+<h4>:handshake: *Consistencia y Experiencia del Usuario*</h4>
+
+<br> Se debe garantizar que el usuario obtenga resultados consistentes independientemente de la librería elegida, ofreciendo documentación clara y mensajes de error útiles para guiar al usuario.
+:::
+:::::
+::::::::::::
+
+# Información de Contacto {.smaller .center .scrollable transition="slide"}
 
 <br> <br>
 
@@ -87,4 +278,3 @@ Ubicación: Carrera 45 \# 26-58, oficina 506
 Edif. Uriel Gutiérrez
 
 Bogotá D.C., Colombia
-
