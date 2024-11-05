@@ -212,6 +212,8 @@ Plot.Series(
 ::: {.column width="50%"}
 #### :arrows_counterclockwise: *Estructura de Sintaxis Diferente*
 
+<br>
+
 -   `ggplot2` usa una sintaxis basada en capas, donde se agregan componentes (`+`).
 -   `Highcharter` sigue una estructura de configuración basada en JSON similar a JavaScript.
 -   `Plotly` mezcla un enfoque declarativo y orientado a objetos, distinto a los anteriores.
@@ -254,7 +256,7 @@ Plot.Series(
 :::
 
 ::: {.column width="50%"}
-<h4>:handshake: *Consistencia y Experiencia del Usuario*</h4>
+#### :handshake: *Consistencia y Experiencia del Usuario*
 
 <br> Se debe garantizar que el usuario obtenga resultados consistentes independientemente de la librería elegida, ofreciendo documentación clara y mensajes de error útiles para guiar al usuario.
 :::
